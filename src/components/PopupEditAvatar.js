@@ -1,12 +1,13 @@
 import PopupWithForm from "./PopupWithForm";
 
-function PopupEditAvatar(props) {
+function PopupEditAvatar({ isOpen, onClose }) {
   return (
     <PopupWithForm
       name={'popupEditAvatar'}
       title={'Обновить аватар'}
-      isOpen={props.isOpen}
-      onClose={props.onClose}
+      isOpen={isOpen}
+      onClose={onClose}
+      textButton={'Сохранить'}
       children={
         <>
           <div className="form__section">
@@ -14,7 +15,6 @@ function PopupEditAvatar(props) {
               id="avatar" minLength="2" required />
             <span className="form__input-error avatar-error"></span>
           </div>
-          <button type="submit" aria-label="Вы уверены?" className="form__save">Сохранить</button>
         </>
       }
     />

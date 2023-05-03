@@ -1,12 +1,13 @@
 import PopupWithForm from "./PopupWithForm";
 
-function PopupEditProfile(props) {
+function PopupEditProfile({ isOpen, onClose }) {
   return (
     <PopupWithForm
       name={'popupEditProfile'}
       title={'Редактировать профиль'}
-      onClose={props.onClose}
-      isOpen={props.isOpen}
+      onClose={onClose}
+      isOpen={isOpen}
+      textButton='Сохранить'
       children={
         <>
           <div className="form__section">
@@ -19,7 +20,6 @@ function PopupEditProfile(props) {
               id="job" minLength="2" maxLength="200" required />
             <span className="form__input-error job-error"></span>
           </div>
-          <button type="submit" aria-label="Сохранить" className="form__save">Сохранить</button>
         </>
       }
     />

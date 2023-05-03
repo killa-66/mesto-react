@@ -1,12 +1,13 @@
 import PopupWithForm from "./PopupWithForm";
 
-function PopupAddCad(props) {
+function PopupAddCad({ isOpen, onClose }) {
   return (
     <PopupWithForm
       name={'popupAddCard'}
-      title={'Новое место'}
-      onClose={props.onClose}
-      isOpen={props.isOpen}
+      title='Новое место'
+      onClose={onClose}
+      isOpen={isOpen}
+      textButton='Создать'
       children={
         <>
           <div className="form__section">
@@ -19,7 +20,6 @@ function PopupAddCad(props) {
               id="imageCard" required />
             <span className="form__input-error imageCard-error"></span>
           </div>
-          <button type="submit" aria-label="Создать" className="form__save">Создать</button>
         </>
       }
     />

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../index.css';
 import Footer from './Footer';
 import Header from './Header';
 import ImagePopup from './ImagePopup';

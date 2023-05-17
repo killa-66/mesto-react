@@ -1,12 +1,12 @@
 import PopupWithForm from "./PopupWithForm";
 
-function PopupDeleteCard(props) {
+function PopupDeleteCard({ isOpen, onClose }) {
   return (
     <PopupWithForm
       name={'popupDeleteCard'}
       title={'Вы уверены?'}
-      onClose={props.onClose}
-      isOpen={props.isOpen}
+      onClose={onClose}
+      isOpen={isOpen}
       children={
         <>
           <button type="submit" aria-label="Вы уверены?" className="form__save">Да</button>

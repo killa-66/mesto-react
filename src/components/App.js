@@ -101,6 +101,16 @@ function App() {
         console.log('Error :', err))
   }
 
+  function handleAddNewPlace(newCard) {
+    api.postNewCard(newCard)
+      .then(res => {
+        setCards([res, ...cards]);
+        closeAllPopups();
+      })
+      .catch(err =>
+        console.log('Error :', err))
+  }
+
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
@@ -115,7 +125,7 @@ function App() {
           <Header />
           <Main
             onEditProfile={handleEditProfileClick}
-            onAddPlace={handleAddPlaceClick}
+            onAddPlaceClick={handleAddPlaceClick}
             onEditAvatar={handleEditAvatarClick}
             onCardClick={handleCardClick}
             onCardLike={handleCardLike}
@@ -135,6 +145,7 @@ function App() {
           <PopupAddCard
             isOpen={isAddPlacePopupOpen}
             onClose={closeAllPopups}
+            onAddPlace={handleAddNewPlace}
           />
           <PopupEditProfile
             isOpen={isEditProfilePopupOpen}

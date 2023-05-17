@@ -4,7 +4,7 @@ import Card from './Card'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
 import { CardContext } from '../contexts/CardContext';
 
-function Main({ onAddPlace, onEditAvatar, onCardClick, onEditProfile, onCardLike, onCardDelete }) {
+function Main({ onAddPlaceClick, onEditAvatar, onCardClick, onEditProfile, onCardLike, onCardDelete }) {
 
   const currentUser = useContext(CurrentUserContext);
   const cards = useContext(CardContext);
@@ -21,7 +21,7 @@ function Main({ onAddPlace, onEditAvatar, onCardClick, onEditProfile, onCardLike
             <button type="button" aria-label="Редактировать профиль" className="profile__open" onClick={onEditProfile}></button>
             <p className="profile__profession">{currentUser.about}</p>
           </div>
-          <button type="button" aria-label="Добавить" className="profile__add" onClick={onAddPlace}></button>
+          <button type="button" aria-label="Добавить" className="profile__add" onClick={onAddPlaceClick}></button>
         </section>
         <section className="grid">
           {cards.map(item => {

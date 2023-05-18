@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function PopupAddCad({ isOpen, onClose, onAddPlace }) {
+function PopupAddCad({ isOpen, onClose, onAddPlace, stateLoading }) {
   const nameRef = useRef();
   const linkRef = useRef();
 
@@ -21,7 +21,7 @@ function PopupAddCad({ isOpen, onClose, onAddPlace }) {
       onClose={onClose}
       isOpen={isOpen}
       handleSubmit={handleSubmit}
-      textButton='Создать'
+      textButton={stateLoading ? 'Создание...' : 'Создать'}
       children={
         <>
           <div className="form__section">

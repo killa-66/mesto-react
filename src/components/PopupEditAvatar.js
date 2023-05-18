@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function PopupEditAvatar({ isOpen, onClose, onUpdateAvatar }) {
+function PopupEditAvatar({ isOpen, onClose, onUpdateAvatar, stateLoading }) {
   const inputRef = useRef()
 
   function handleSubmit(e) {
@@ -19,7 +19,7 @@ function PopupEditAvatar({ isOpen, onClose, onUpdateAvatar }) {
       isOpen={isOpen}
       onClose={onClose}
       handleSubmit={handleSubmit}
-      textButton={'Сохранить'}
+      textButton={stateLoading ? 'Сохранение...' : 'Сохранить'}
       children={
         <>
           <div className="form__section">

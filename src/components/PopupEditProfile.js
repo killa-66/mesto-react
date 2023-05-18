@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function PopupEditProfile({ isOpen, onClose, onUpdate }) {
+function PopupEditProfile({ isOpen, onClose, onUpdate, stateLoading }) {
   const [nameForm, setNameForm] = useState('')
   const [description, setDescription] = useState('')
   const currentUser = useContext(CurrentUserContext);
@@ -35,7 +35,7 @@ function PopupEditProfile({ isOpen, onClose, onUpdate }) {
       onClose={onClose}
       isOpen={isOpen}
       handleSubmit={handleSubmit}
-      textButton='Сохранить'
+      textButton={stateLoading ? 'Сохранение...' : 'Сохранить'}
       children={
         <>
           <div className="form__section">

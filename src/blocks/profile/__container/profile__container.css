@@ -28,6 +28,7 @@
 .profile__container:hover:before{
     opacity: 0.8;
     background-color: #000000;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 690px){

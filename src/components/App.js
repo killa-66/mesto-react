@@ -24,12 +24,12 @@ function App() {
 
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
-    .then(([data, res]) => {
-      setCurrentUser(data);
-      setCards(res)
-    })
-    .catch(err =>
-      console.log('Error :', err))
+      .then(([data, res]) => {
+        setCurrentUser(data);
+        setCards(res)
+      })
+      .catch(err =>
+        console.log('Error :', err))
   }, [])
 
   function handleEditAvatarClick() {
@@ -57,9 +57,9 @@ function App() {
       })
       .catch(err =>
         console.log('Error :', err))
-      .finally(
+      .finally(() => {
         setIsLoading(false)
-      )
+      })
   }
 
   function handleUpdateAvatar(avatar) {
@@ -71,8 +71,9 @@ function App() {
       })
       .catch(err =>
         console.log('Error :', err))
-      .finally(
+      .finally(() => {
         setIsLoading(false)
+      }
       )
   }
 
@@ -117,9 +118,9 @@ function App() {
       })
       .catch(err =>
         console.log('Error :', err))
-      .finally(
+      .finally(() => {
         setIsLoading(false)
-      )
+      })
   }
 
   function closeAllPopups() {

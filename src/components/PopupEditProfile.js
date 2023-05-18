@@ -1,31 +1,20 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import PopupWithForm from "./PopupWithForm";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import useFormAndValidation from "../hooks/useValidation";
 
 function PopupEditProfile({ isOpen, onClose, onUpdate, stateLoading }) {
-  const [nameForm, setNameForm] = useState('')
-  const [description, setDescription] = useState('')
   const currentUser = useContext(CurrentUserContext);
+  const { values, handleChange, errors, isValid, setValues } = useFormAndValidation()
 
   useEffect(() => {
-    setNameForm(currentUser.name);
-    setDescription(currentUser.about);
-  }, [currentUser]);
+    setValues(currentUser)
+  }, [currentUser, isOpen, setValues]);
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    onUpdate({
-      name: nameForm,
-      about: description
-    })
-  }
-
-  function handleChangeName(e) {
-    setNameForm(e.target.value)
-  }
-  function handleChangedescription(e) {
-    setDescription(e.target.value)
+    onUpdate(values)
   }
 
   return (
@@ -36,19 +25,20 @@ function PopupEditProfile({ isOpen, onClose, onUpdate, stateLoading }) {
       isOpen={isOpen}
       handleSubmit={handleSubmit}
       textButton={stateLoading ? 'Сохранение...' : 'Сохранить'}
+      isValid={isValid}
       children={
         <>
           <div className="form__section">
             <input type="text" name="name" placeholder="Ваше Имя" className="form__input" id="name"
-              minLength="2" maxLength="40" required value={nameForm || ''}
-              onChange={handleChangeName} />
-            <span className="form__input-error name-error"></span>
+              minLength="2" maxLength="40" required value={values.name || ''}
+              onChange={handleChange} />
+            <span className="form__input-error name-error">{errors.name}</span>
           </div>
           <div className="form__section">
             <input type="text" name="about" placeholder="Ваша профессия" className="form__input"
-              id="job" minLength="2" maxLength="200" required value={description || ''}
-              onChange={handleChangedescription} />
-            <span className="form__input-error job-error"></span>
+              id="job" minLength="2" maxLength="200" required value={values.about || ''}
+              onChange={handleChange} />
+            <span className="form__input-error job-error">{errors.about}</span>
           </div>
         </>
       }
